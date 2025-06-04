@@ -1,16 +1,20 @@
+
 function CamposForm({ datos, setDatos }) {
   return (
     <>
-      <div>
-        <label>Id categoría</label>
-        <input
-          type="number"
-          value={datos.idCategoria}
-          onChange={(e) => setDatos({ ...datos, idCategoria: e.target.value })}
-          required
-        />
-      </div>
-
+      {datos.idCategoria && (
+          <div>
+              <label>Id Categoria</label>
+              <p>{datos.idCategoria}</p>
+            {/* <input
+                type="number"
+                value={datos.idCategoria}
+                readOnly
+                disabled
+                placeholder="Id categoria"
+            /> */}
+          </div>
+      )}
       <div>
         <label>Categoría</label>
         <select
@@ -27,29 +31,47 @@ function CamposForm({ datos, setDatos }) {
       </div>
 
       <div>
-        <label>Nombre</label>
+        <label>Id Punto de Venta</label>
         <input
-          value={datos.nombre}
-          onChange={(e) => setDatos({ ...datos, nombre: e.target.value })}
+            type="number"
+            value={datos.idPuntoVenta}
+            onChange={(e) => setDatos({ ...datos, idPuntoVenta: e.target.value })}
+            required
+        />
+      </div>
+      <div>
+        <label>Punto de venta</label>
+        <input
+            type="text"
+            value={datos.puntoVenta}
+            onChange={(e) => setDatos({ ...datos, puntoVenta: e.target.value })}
+            required
+        />
+      </div>
+      <div>
+        <label>Base</label>
+        <input
+          type="text"
+          value={datos.base}
+          onChange={(e) => setDatos({ ...datos, base: e.target.value })}
           required
         />
       </div>
-
-      <div>
-        <label>Apellido</label>
+       <div>
+        <label>Zona</label>
         <input
-          value={datos.apellido}
-          onChange={(e) => setDatos({ ...datos, apellido: e.target.value })}
+          type="text"
+          value={datos.zona}
+          onChange={(e) => setDatos({ ...datos, zona: e.target.value })}
           required
         />
       </div>
-
       <div>
-        <label>Celular</label>
+        <label>Otro Valor</label>
         <input
           type="number"
-          value={datos.celular}
-          onChange={(e) => setDatos({ ...datos, celular: e.target.value })}
+          value={datos.otroValor}
+          onChange={(e) => setDatos({ ...datos, otroValor: e.target.value })}
           required
         />
       </div>
