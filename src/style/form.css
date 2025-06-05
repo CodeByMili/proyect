@@ -1,47 +1,55 @@
-/* === Estilo general === */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #ffffff;
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  justify-content: center;  /* Centra horizontalmente */
-  align-items: center;      /* Centra verticalmente */
+    background: #ffffff;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    width: 100%;
+    /* height: 100%; */
+     
 }
 
-/* === Contenedor principal === */
 .container {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 40px 20px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 40px;
+  max-height: 90vh;
+  overflow: auto;
 }
 
-/* === Título === */
-h2 {
+.form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;;
+    margin-left: 60px;
+    
+}
+
+.registro-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;;
+    margin-left: 60px;
+
+}
+
+h2{
   font-weight: bold;
   color: #000000;
   font-size: 2.2rem;
   text-align: center;
-  margin: 20px 0 30px;
-}
-
-/* === Formulario === */
-.form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 1000px;
-  box-sizing: border-box;
+  margin-bottom: 30px;
+  margin-top: 20px;;
+    
 }
 
 .form div {
@@ -57,123 +65,50 @@ h2 {
 .form input,
 .form select {
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.btn-registrar {
-  grid-column: span 3;
-  justify-self: center;
-  padding: 10px 20px;
-  background-color: #b11818;
-  color: white;
-  border: none;
-  border-radius: 4px;
   font-size: 16px;
-  cursor: pointer;
+  width: 100%;         
+  box-sizing: border-box; 
 }
 
-.btn-registrar:hover {
-  background-color: #e42b2b;
-}
-
-/* === Contenedor de registros === */
-.registro-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-  width: 100%;
-  max-width: 1000px;
-  box-sizing: border-box;
-}
 
 .campo label {
+  display: block;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
+  padding: 10px;
+  border-radius: 4px;
   font-size: 16px;
 }
 
-.valor {
+.valor{
   border: 1px solid #ccc;
   padding: 8px;
+  border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 16px;
 }
 
-/* === Botones de acción === */
-.botones {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 12px;
-}
 
-.btn-editar,
-.btn-eliminar {
-  padding: 6px 12px;            /* Menor padding = botones más pequeños */
-  background-color: #b11818;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;              /* Tamaño de letra más moderado */
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-editar {
-  background-color: #007bff;
-}
-
-.btn-editar:hover,
-.btn-eliminar:hover {
-  opacity: 0.85;
-}
-
-/* === Búsqueda === */
-.busqueda {
-  text-align: center;
-  margin: 20px auto 0;
-  width: 100%;
-  max-width: 500px;
+/* .modal {
+ display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  box-sizing: border-box;
-}
-
-/* === Contenedor de tarjetas con scroll === */
-.tarjetas-scroll {
-  max-height: 350px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   margin-top: 20px;
-  width: 100%;
-  max-width: 1000px;
-  box-sizing: border-box;
-}
+} */
 
-/* === Modal (si aplica) === */
 .modal-contenido {
   display: grid;
-  grid-template-columns: repeat(5, 2fr);
+  grid-template-columns: repeat(5, 2fr); 
   gap: 20px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin-top: 20px;
-  padding: 20px;
-}
+} 
 
 .cerrar {
   position: absolute;
@@ -182,8 +117,182 @@ h2 {
   font-size: 24px;
   cursor: pointer;
 }
+  
+.botones-form {
+  display: flex;         /* Alinea hijos en fila */
+  gap: 10px;             /* Espacio entre botones */
+  justify-content: flex-start; /* Alineación a la izquierda (opcional) */
+  flex-wrap: wrap;  
+}
 
-/* === RESPONSIVE === */
+.btn-registro,
+.btn-cancelar,
+.btn-actualizar {
+ /* o simplemente quita esta línea si usas flex en el contenedor */
+  width: auto;
+  max-width: 200px;
+  text-align: center;
+  padding: 10px;
+  background-color: #b11818;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+
+.btn-registrar:hover {
+  background-color: #e42b2b;
+}
+
+.botones{
+  display: flex;
+  gap: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 300px;
+  margin-left: 110%;
+}
+/* 
+.btn-eliminar {
+    justify-self: center;
+    padding: 10px 20px;
+    background-color: #b11818;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 10%;
+    margin-left: 50%;
+  
+} */
+
+
+.btn-editar,
+.btn-eliminar {
+  padding: 6px 12px;
+  margin: 0 2px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+.btn-editar {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.btn-eliminar {
+  background-color: #b11818;
+  color: #fff;
+}
+/* 
+.btn-editar{
+  justify-self: center;
+  padding: 10px 20px;
+  background-color: #b11818;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 10%;
+} */
+
+.busqueda{
+   text-align: center;
+   margin-left: 4%;
+   width: 50%;
+    background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tabla-registros {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fff;
+}
+
+.tabla-registros th,
+.tabla-registros td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.tabla-registros th {
+  background-color: #b11818;
+  color: #fff;
+  font-weight: bold;
+}
+
+.tabla-registros tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tabla-registros tr:hover {
+  background-color: #f1f1f1;
+}
+@media (max-width: 900px) {
+  h2{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;;
+  };
+  .form {
+    grid-template-columns: repeat(2, 1fr); 
+    font-size: 1.2rem;
+    padding: 20px;
+    margin-left: 50%;
+  }
+  .registro-container{
+    grid-template-columns: repeat(2, 1fr); 
+    font-size: 1.2rem;
+    padding: 20px;
+    margin-left: 85%;
+  }
+  .btn-registrar {
+    grid-column: span 2;
+  }
+  .busqueda{
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  h2{
+    font-size: 1.2rem;
+    margin-left: 20%;
+  }
+  .form {
+    grid-template-columns: 1fr;
+    font-size: 1.0rem;
+    padding: 10px;
+    margin-left: 90px;
+    justify-content: center;
+  }
+  .registro-container{
+    grid-template-columns: 1fr; 
+    font-size: 1.2rem;
+    padding: 20px;
+    margin-left: 19%;
+  }
+  .btn-registrar {
+    grid-column: span 1;
+    width: 100%;
+  }
+
+  .busqueda{
+    margin-left: 92px;
+  }
+}
+
 @media (max-width: 1024px) {
   .form,
   .registro-container {
@@ -216,7 +325,7 @@ h2 {
     width: 100%;
   }
 }
-
+/* 
 @media (max-width: 480px) {
   h2 {
     font-size: 1.5rem;
@@ -226,11 +335,37 @@ h2 {
   .registro-container,
   .busqueda {
     padding: 15px;
-  }
+    grid-template-columns: 1fr;
+    margin-left: 3%;
+  };
 
   .btn-editar,
   .btn-eliminar {
     font-size: 13px;
-    padding: 6px 12px;
-  }
+    padding: 6px 12px;
+  };
+} */
+
+
+
+.btn-registro {
+  background-color: green;
+  color: white;
 }
+
+.btn-actualizar {
+  background-color: blue;
+  color: white;
+}
+
+.btn-cancelar {
+  background-color: gray;
+  color: white;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+

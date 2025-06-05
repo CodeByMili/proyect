@@ -1,25 +1,37 @@
 import "../style/form.css";
 import { useState } from "react";
 import CamposForm from "./CamposForm";
-import Tarjeta from "./Tarjeta";
 
 function Form() {
-
   const vacio = () => ({
-    idCategoria : '',
     categoria: '',
     idPuntoVenta: '',
     puntoVenta: '',
-    base :'',
-    zona : '',
+    base: '',
+    zona: '',
     otroValor: ''
-
   });
 
   const [registros, setRegistros] = useState([]);
   const [datos, setDatos] = useState(vacio());
   const [indiceEdit, setIndiceEdit] = useState(null);
-  const [busqueda, setBusqueda] = useState("")
+  const [busqueda, setBusqueda] = useState("");
+  const [errores, setErrores] = useState({});
+
+
+  const validarCampos = () => {
+  const erroresTemp = {};
+
+  if (!datos.categoria.trim()) erroresTemp.categoria = "La categoría es obligatoria";
+  if (!datos.idPuntoVenta.trim()) erroresTemp.idPuntoVenta = "El ID punto de venta es obligatorio";
+  if (!datos.puntoVenta.trim()) erroresTemp.puntoVenta = "El punto de venta es obligatorio";
+  if (!datos.base.trim()) erroresTemp.base = "La base es obligatoria";
+  if (!datos.zona.trim()) erroresTemp.zona = "La zona es obligatoria";
+  // Por ejemplo, otroValor es opcional, si quieres puedes validar también.
+
+  return erroresTemp;
+};
+
 
   const registrosFiltrados = registros.filter(reg =>
     Object.values(reg).some(valor =>
@@ -30,28 +42,19 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const erroresValidacion = validarCampos();
+    if (Object.keys(erroresValidacion).length > 0) {
+      setErrores(erroresValidacion);
+      return; // No se envía hasta corregir errores
+   }
+    setErrores({});
+
     if (indiceEdit !== null) {
       const copia = [...registros];
       copia[indiceEdit] = datos;
       setRegistros(copia);
     } else {
-      console.log(datos)
       setRegistros([...registros, datos]);
-      try{
-        const PuntosVenta = {
-          idCategoria: '1',
-          categoria: '1',
-          idPuntoVenta: '1',
-          puntoVenta: '1',
-          base :'errt',
-          zona : 'Pereira',
-          otroValor: '4'
-        }
-        // const data = await createArqueo(PuntosVenta);
-        console.log("Datos enviados", PuntosVenta);
-      }catch{
-        console.log("Datos enviados incorrectamente");
-      }
     }
 
     setDatos(vacio());
@@ -59,7 +62,7 @@ function Form() {
   };
 
   const handleEdit = (index) => {
-    setDatos({ ...registros[index] }); 
+    setDatos({ ...registros[index] });
     setIndiceEdit(index);
   };
 
@@ -81,39 +84,89 @@ function Form() {
       <h2>Base puntos de venta</h2>
 
       <input
-         type="text"
-         placeholder="Busqueda"
-         className="busqueda"
-         onChange={e => setBusqueda(e.target.value)}
+        type="text"
+        placeholder="Busqueda"
+        className="busqueda"
+        onChange={e => setBusqueda(e.target.value)}
       />
+     <form onSubmit={handleSubmit} className="form">
+  <CamposForm datos={datos} setDatos={setDatos} errores={errores} />
 
-      <form onSubmit={handleSubmit} className="form">
-        <CamposForm datos={datos} setDatos={setDatos} />
-        <button type="submit" className="btn-registrar">
-          {indiceEdit !== null ? "Actualizar" : "Registrar"}
-        </button>
-        {indiceEdit !== null && (
-          <button type="button" className="btn-registrar" onClick={handleCancel}>
+
+  <div className="botones-form">
+    {/* Modo Registrar */}
+    {indiceEdit === null && (
+      <button
+        type="submit"
+        className="btn-registro"
+      >
+        Registrar
+      </button>
+    )}
+
+    {/* Modo Editar: Actualizar + Cancelar */}
+    {indiceEdit !== null && (
+      <>
+        <div className="botones-form">
+            <button
+            type="submit"
+            className="btn-actualizar"
+          >
+            Actualizar
+          </button>
+          <button
+            type="button"
+            className="btn-cancelar"
+            onClick={handleCancel}
+          >
             Cancelar
           </button>
-        )}
-      </form>
+        </div>
+        
+      </>
+    )}
+  </div>
+</form>
 
-      <div className="tarjetas-scroll">
-         {registrosFiltrados.map((reg, idx) => (
-        <Tarjeta
-          key={idx}
-          registro={reg}
-          onEdit={() => handleEdit(idx)}
-          onDelete={() => handleDelete(idx)}
-        />
-      ))}
+
+      <div style={{overflowX: "auto", marginTop: "30px"}}>
+        <table className="tabla-registros">
+          <thead>
+            <tr>
+              <th>Categoría</th>
+              <th>Id Punto de Venta</th>
+              <th>Punto de venta</th>
+              <th>Base</th>
+              <th>Zona</th>
+              <th>Otro Valor</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {registrosFiltrados.map((reg, idx) => (
+              <tr key={idx}>
+                <td>{reg.categoria}</td>
+                <td>{reg.idPuntoVenta}</td>
+                <td>{reg.puntoVenta}</td>
+                <td>{reg.base}</td>
+                <td>{reg.zona}</td>
+                <td>{reg.otroValor}</td>
+                <td>
+                  <button className="btn-editar" onClick={() => handleEdit(idx)}>Editar</button>
+                  <button className="btn-eliminar" onClick={() => handleDelete(idx)}>Eliminar</button>
+                </td>
+              </tr>
+            ))}
+            {registrosFiltrados.length === 0 && (
+              <tr>
+                <td colSpan={7} style={{textAlign: "center"}}>No hay registros</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
-   
     </div>
   );
 }
 
 export default Form;
-
-
