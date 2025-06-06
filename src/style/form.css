@@ -1,371 +1,162 @@
+
 body {
-    background: #ffffff;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    justify-content: center;
-    width: 100%;
-    /* height: 100%; */
-     
+  margin: 0;
+  padding: 20px;
+  background-color: #f2f2f2;
+  font-family: sans-serif;
+  box-sizing: border-box;
 }
+
 
 .container {
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  max-height: 90vh;
-  overflow: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;;
-    margin-left: 60px;
-    
-}
-
-.registro-container{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;;
-    margin-left: 60px;
-
-}
-
-h2{
-  font-weight: bold;
-  color: #000000;
-  font-size: 2.2rem;
+.container h2 {
   text-align: center;
   margin-bottom: 30px;
-  margin-top: 20px;;
-    
 }
 
-.form div {
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+
+.campo {
   display: flex;
   flex-direction: column;
 }
 
-.form label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form input,
-.form select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  width: 100%;         
-  box-sizing: border-box; 
-}
-
-
 .campo label {
-  display: block;
   font-weight: bold;
-  margin-bottom: 0.25rem;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: 16px;
+  margin-bottom: 5px;
 }
 
-.valor{
-  border: 1px solid #ccc;
+
+.campo input {
   padding: 8px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 16px;
 }
 
 
-/* .modal {
- display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  background: white;
-  border-radius: 10px;
-  margin-top: 20px;
-} */
-
-.modal-contenido {
-  display: grid;
-  grid-template-columns: repeat(5, 2fr); 
-  gap: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
-} 
-
-.cerrar {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
+.error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 4px;
 }
-  
+
+
 .botones-form {
-  display: flex;         /* Alinea hijos en fila */
-  gap: 10px;             /* Espacio entre botones */
-  justify-content: flex-start; /* Alineación a la izquierda (opcional) */
-  flex-wrap: wrap;  
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .btn-registro,
-.btn-cancelar,
-.btn-actualizar {
- /* o simplemente quita esta línea si usas flex en el contenedor */
-  width: auto;
-  max-width: 200px;
-  text-align: center;
-  padding: 10px;
-  background-color: #b11818;
-  color: #ffffff;
-  border-radius: 4px;
-}
-
-
-.btn-registrar:hover {
-  background-color: #e42b2b;
-}
-
-.botones{
-  display: flex;
-  gap: flex;
-  justify-content: center;
-  margin-top: 10px;
-  gap: 300px;
-  margin-left: 110%;
-}
-/* 
-.btn-eliminar {
-    justify-self: center;
-    padding: 10px 20px;
-    background-color: #b11818;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    display: inline-block;
-    margin-top: 10%;
-    margin-left: 50%;
-  
-} */
-
-
-.btn-editar,
-.btn-eliminar {
-  padding: 6px 12px;
-  margin: 0 2px;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-
-.btn-editar {
-  background-color: #2563eb;
-  color: #fff;
-}
-
-.btn-eliminar {
-  background-color: #b11818;
-  color: #fff;
-}
-/* 
-.btn-editar{
-  justify-self: center;
+.btn-actualizar,
+.btn-cancelar {
   padding: 10px 20px;
-  background-color: #b11818;
-  color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  display: inline-block;
-  margin-top: 10%;
-} */
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
 
-.busqueda{
-   text-align: center;
-   margin-left: 4%;
-   width: 50%;
-    background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+.btn-registro {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-actualizar {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-cancelar {
+  background-color: #dc3545;
+  color: white;
+}
+
+
+.tabla-container {
+  overflow-x: auto;
+  margin-top: 20px;
 }
 
 .tabla-registros {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  background: #fff;
+  margin: 0 auto;
+  background-color: white;
+  min-width: 600px;
 }
 
 .tabla-registros th,
 .tabla-registros td {
   border: 1px solid #ddd;
-  padding: 8px 12px;
+  padding: 12px;
   text-align: center;
 }
 
 .tabla-registros th {
-  background-color: #b11818;
-  color: #fff;
+  background-color: #f8f9fa;
   font-weight: bold;
 }
 
-.tabla-registros tr:nth-child(even) {
-  background-color: #f9f9f9;
+.btn-editar,
+.btn-eliminar {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-.tabla-registros tr:hover {
-  background-color: #f1f1f1;
-}
-@media (max-width: 900px) {
-  h2{
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #000000;
-    text-align: center;
-    margin-bottom: 30px;
-    margin-top: 20px;;
-  };
-  .form {
-    grid-template-columns: repeat(2, 1fr); 
-    font-size: 1.2rem;
-    padding: 20px;
-    margin-left: 50%;
-  }
-  .registro-container{
-    grid-template-columns: repeat(2, 1fr); 
-    font-size: 1.2rem;
-    padding: 20px;
-    margin-left: 85%;
-  }
-  .btn-registrar {
-    grid-column: span 2;
-  }
-  .busqueda{
-    margin-left: 60px;
-  }
+.btn-editar {
+  background-color: #ffc107;
+  color: black;
 }
 
-@media (max-width: 600px) {
-  h2{
-    font-size: 1.2rem;
-    margin-left: 20%;
-  }
-  .form {
-    grid-template-columns: 1fr;
-    font-size: 1.0rem;
-    padding: 10px;
-    margin-left: 90px;
-    justify-content: center;
-  }
-  .registro-container{
-    grid-template-columns: 1fr; 
-    font-size: 1.2rem;
-    padding: 20px;
-    margin-left: 19%;
-  }
-  .btn-registrar {
-    grid-column: span 1;
-    width: 100%;
-  }
-
-  .busqueda{
-    margin-left: 92px;
-  }
+.btn-eliminar {
+  background-color: #dc3545;
+  color: white;
 }
 
-@media (max-width: 1024px) {
-  .form,
-  .registro-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .btn-registrar {
-    grid-column: span 2;
-  }
-}
 
 @media (max-width: 768px) {
-  .form,
-  .registro-container {
+  .form {
     grid-template-columns: 1fr;
-    padding: 20px;
   }
 
-  .btn-registrar {
-    grid-column: span 1;
-    width: 100%;
-  }
-
-  .botones {
+  .botones-form {
     flex-direction: column;
     align-items: center;
   }
-
-  .btn-editar,
-  .btn-eliminar {
-    width: 100%;
-  }
 }
-/* 
+
 @media (max-width: 480px) {
-  h2 {
-    font-size: 1.5rem;
+  .container {
+    padding: 20px;
   }
 
-  .form,
-  .registro-container,
-  .busqueda {
-    padding: 15px;
-    grid-template-columns: 1fr;
-    margin-left: 3%;
-  };
-
-  .btn-editar,
-  .btn-eliminar {
-    font-size: 13px;
-    padding: 6px 12px;
-  };
-} */
-
-
-
-.btn-registro {
-  background-color: green;
-  color: white;
+  .btn-registro,
+  .btn-actualizar,
+  .btn-cancelar {
+    width: 100%;
+    text-align: center;
+  }
 }
-
-.btn-actualizar {
-  background-color: blue;
-  color: white;
-}
-
-.btn-cancelar {
-  background-color: gray;
-  color: white;
-}
-
-.error {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: 4px;
-}
-

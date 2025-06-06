@@ -15,14 +15,20 @@ function Form() {
   const [registros, setRegistros] = useState([]);
   const [datos, setDatos] = useState(vacio());
   const [indiceEdit, setIndiceEdit] = useState(null);
-  const [busqueda, setBusqueda] = useState("");
+  //const [busqueda, setBusqueda] = useState("");
   const [errores, setErrores] = useState({});
 
 
   const validarCampos = () => {
   const erroresTemp = {};
 
-  if (!datos.categoria.trim()) erroresTemp.categoria = "La categoría es obligatoria";
+  const contieneNumeros = /\d/;
+
+  if (!datos.categoria.trim()){
+    erroresTemp.categoria = "La categoría es obligatoria";
+  }else if (contieneNumeros.test(datos.categoria)) {
+    erroresTemp.categoria = "La categoría no puede contener números";
+  }
   if (!datos.idPuntoVenta.trim()) erroresTemp.idPuntoVenta = "El ID punto de venta es obligatorio";
   if (!datos.puntoVenta.trim()) erroresTemp.puntoVenta = "El punto de venta es obligatorio";
   if (!datos.base.trim()) erroresTemp.base = "La base es obligatoria";
@@ -33,11 +39,11 @@ function Form() {
 };
 
 
-  const registrosFiltrados = registros.filter(reg =>
-    Object.values(reg).some(valor =>
-      valor.toString().toLowerCase().includes(busqueda.toLocaleLowerCase())
-    )
-  );
+  // const registrosFiltrados = registros.filter(reg =>
+  //   Object.values(reg).some(valor =>
+  //     valor.toString().toLowerCase().includes(busqueda.toLocaleLowerCase())
+  //   )
+  // );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,49 +89,33 @@ function Form() {
     <div className="container">
       <h2>Base puntos de venta</h2>
 
-      <input
+      {/* <input
         type="text"
         placeholder="Busqueda"
         className="busqueda"
         onChange={e => setBusqueda(e.target.value)}
-      />
-     <form onSubmit={handleSubmit} className="form">
-  <CamposForm datos={datos} setDatos={setDatos} errores={errores} />
+      /> */}
 
 
-  <div className="botones-form">
-    {/* Modo Registrar */}
-    {indiceEdit === null && (
-      <button
-        type="submit"
-        className="btn-registro"
-      >
-        Registrar
-      </button>
-    )}
 
-    {/* Modo Editar: Actualizar + Cancelar */}
-    {indiceEdit !== null && (
-      <>
-        <div className="botones-form">
-            <button
-            type="submit"
-            className="btn-actualizar"
-          >
-            Actualizar
+  <form onSubmit={handleSubmit} className="form">
+        <CamposForm datos={datos} setDatos={setDatos} errores={errores} />
+      <div className="botones-form">
+        {indiceEdit === null ? (
+          <button type="submit" className="btn-registro">
+            Registrar
           </button>
-          <button
-            type="button"
-            className="btn-cancelar"
-            onClick={handleCancel}
-          >
-            Cancelar
-          </button>
-        </div>
-        
-      </>
-    )}
-  </div>
+        ) : (
+          <>
+            <button type="submit" className="btn-actualizar">
+              Actualizar
+            </button>
+            <button type="button" className="btn-cancelar" onClick={handleCancel}>
+              Cancelar
+            </button>
+          </>
+        )}
+    </div>
 </form>
 
 
@@ -143,7 +133,7 @@ function Form() {
             </tr>
           </thead>
           <tbody>
-            {registrosFiltrados.map((reg, idx) => (
+            {registros.map((reg, idx) => (
               <tr key={idx}>
                 <td>{reg.categoria}</td>
                 <td>{reg.idPuntoVenta}</td>
@@ -157,7 +147,7 @@ function Form() {
                 </td>
               </tr>
             ))}
-            {registrosFiltrados.length === 0 && (
+            {registros.length === 0 && (
               <tr>
                 <td colSpan={7} style={{textAlign: "center"}}>No hay registros</td>
               </tr>
